@@ -8,7 +8,7 @@ my_cur = my_cnx.cursor()
 st.write("hi")
 # st.write("DB username:", st.secrets["db_username"])
 
-with z.open("training_data_short.csv") as f:
+with open("training_data_short.csv") as f:
     pandas_df = pd.read_csv(f)
     session.write_pandas(pandas_df, "TRAIN_DATASET", auto_create_table=False, overwrite=True)
 
