@@ -3,10 +3,15 @@ import snowflake.connector
 import pandas
 # streamlit.title('Zena\'s Amazing Athleisure Catalog')
 # connect to snowflake
-# my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-# my_cur = my_cnx.cursor()
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
 st.write("hi")
 st.write("DB username:", st.secrets["db_username"])
+
+with z.open("TRAIN_DATASET.csv") as f:
+    pandas_df = pd.read_csv(f)
+    session.write_pandas(pandas_df, "TRAIN_DATASET", auto_create_table=False, overwrite=True)
+
 # # run a snowflake query and put it all in a var called my_catalog
 # my_cur.execute("select color_or_style from catalog_for_website")
 # my_catalog = my_cur.fetchall()
